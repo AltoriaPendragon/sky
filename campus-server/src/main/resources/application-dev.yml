@@ -6,3 +6,8 @@ campus:
     database: campus_takeout
     username: root
     password: ldx36420
+  alioss:
+    endpoint: oss-cn-beijing.aliyuncs.com
+    access-key-id: LTAI5tRAaRupQDtSKHKheQaW
+    access-key-secret: HcRIJbcXwoZSwHAHVF9T8f5XMSzpfU
+    bucket-name: campus-web
