@@ -2,12 +2,12 @@ package com.campus.service;
 
 import com.campus.dto.DishDTO;
 import com.campus.dto.DishPageQueryDTO;
+import com.campus.entity.Dish;
 import com.campus.result.PageResult;
-import org.springframework.stereotype.Service;
+import com.campus.vo.DishVO;
 
 import java.util.List;
 
-@Service
 public interface DishService {
 
     /**
@@ -28,4 +28,24 @@ public interface DishService {
      * @param ids
      */
     void deleteBatch(List<Long> ids);
+
+    /**
+     * 根据菜品Id查询菜品和口味
+     * @param id
+     * @return
+     */
+    DishVO getByIdWithFlavor(Long id);
+
+    /**
+     * 修改菜品
+     * @param dishDTO
+     */
+    void updateWithFlavor(DishDTO dishDTO);
+
+    /**
+     * 根据分类Id获取菜品信息
+     * @param categoryId
+     * @return
+     */
+    List<Dish> getByCategoryId(Long categoryId);
 }
