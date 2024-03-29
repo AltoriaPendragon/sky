@@ -7,7 +7,6 @@ import com.campus.enumeration.OperationType;
 import com.campus.vo.DishVO;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -68,9 +67,9 @@ public interface DishMapper {
 
 
     /**
-     * 根据分类Id获取菜品信息
+     * 动态条件获取菜品数据
      * @param dish
      * @return
      */
-    List<Dish> getByCategoryId(Dish dish);
+    List<Dish> list(Dish dish);
 }

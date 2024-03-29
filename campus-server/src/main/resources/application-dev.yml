@@ -11,3 +11,11 @@ campus:
     access-key-id: LTAI5tRAaRupQDtSKHKheQaW
     access-key-secret: HcRIJbcXwoZSwHAHVF9T8f5XMSzpfU
     bucket-name: campus-web
+  redis:
+    host: localhost
+    port: 6379
+    password: 36420
+    database: 10
+  wechat:
+    appid: wxa549cfc748c06a7e
+    secret: 5324612367f8e75d7e011ce396a9c9bd

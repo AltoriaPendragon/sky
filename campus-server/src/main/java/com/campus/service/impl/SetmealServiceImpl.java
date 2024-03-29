@@ -16,6 +16,7 @@ import com.campus.mapper.SetmealMapper;
 import com.campus.result.PageResult;
 import com.campus.service.DishService;
 import com.campus.service.SetmealService;
+import com.campus.vo.DishItemVO;
 import com.campus.vo.SetmealVO;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -151,4 +152,24 @@ public class SetmealServiceImpl implements SetmealService {
                 .build();
         setmealMapper.update(setmeal);
     }
+
+    /**
+     * 条件查询
+     * @param setmeal
+     * @return
+     */
+    public List<Setmeal> list(Setmeal setmeal) {
+        List<Setmeal> list = setmealMapper.list(setmeal);
+        return list;
+    }
+
+    /**
+     * 根据id查询菜品选项
+     * @param id
+     * @return
+     */
+    public List<DishItemVO> getDishItemById(Long id) {
+        return setmealMapper.getDishItemBySetmealId(id);
+    }
+
 }

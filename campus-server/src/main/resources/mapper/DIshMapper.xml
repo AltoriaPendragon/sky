@@ -46,7 +46,7 @@
         where id = #{id}
     </update>
 
-    <select id="getByCategoryId" resultType="Dish">
+    <select id="list" resultType="Dish">
         select * from dish
         <where>
             <if test="name != null">

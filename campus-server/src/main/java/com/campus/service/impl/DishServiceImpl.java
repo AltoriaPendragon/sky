@@ -6,7 +6,6 @@ import com.campus.dto.DishDTO;
 import com.campus.dto.DishPageQueryDTO;
 import com.campus.entity.Dish;
 import com.campus.entity.DishFlavor;
-import com.campus.entity.SetmealDish;
 import com.campus.exception.DeletionNotAllowedException;
 import com.campus.mapper.DishFlavorMapper;
 import com.campus.mapper.DishMapper;
@@ -22,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -149,6 +149,44 @@ public class DishServiceImpl implements DishService {
                 .categoryId(categoryId)
                 .status(StatusConstant.ENABLE)
                 .build();
-        return dishMapper.getByCategoryId(dish);
+        return dishMapper.list(dish);
+    }
+
+    /**
+     * 起售/禁售菜品
+     * @param status
+     * @param id
+     */
+    @Override
+    public void startOrStop(Integer status, Long id) {
+        Dish dish = Dish.builder()
+                .id(id)
+                .status(status)
+                .build();
+        dishMapper.update(dish);
+    }
+
+    /**
+     * 条件查询菜品和口味
+     * @param dish
+     * @return
+     */
+    public List<DishVO> listWithFlavor(Dish dish) {
+        List<Dish> dishList = dishMapper.list(dish);
+
+        List<DishVO> dishVOList = new ArrayList<>();
+
+        for (Dish d : dishList) {
+            DishVO dishVO = new DishVO();
+            BeanUtils.copyProperties(d,dishVO);
+
+            //根据菜品id查询对应的口味
+            List<DishFlavor> flavors = dishFlavorMapper.getByDishId(d.getId());
+
+            dishVO.setFlavors(flavors);
+            dishVOList.add(dishVO);
+        }
+
+        return dishVOList;
     }
 }
